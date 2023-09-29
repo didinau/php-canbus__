@@ -9,6 +9,12 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_class_CanBus_init, 0, 0, _IS_BOO
 	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, blocking, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_class_CanBus___destruct, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_class_CanBus_close, 0, 0, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_TYPE_MASK_EX(arginfo_class_CanBus_read, 0, 0, CanFrame, MAY_BE_FALSE)
 ZEND_END_ARG_INFO()
 
@@ -26,6 +32,8 @@ ZEND_END_ARG_INFO()
 
 
 ZEND_METHOD(CanBus, __construct);
+ZEND_METHOD(CanBus, __destruct);
+ZEND_METHOD(CanBus, close);
 ZEND_METHOD(CanBus, init);
 ZEND_METHOD(CanBus, read);
 ZEND_METHOD(CanBus, send);
@@ -35,6 +43,8 @@ ZEND_METHOD(CanFrame, __construct);
 
 static const zend_function_entry class_CanBus_methods[] = {
 	ZEND_ME(CanBus, __construct, arginfo_class_CanBus___construct, ZEND_ACC_PUBLIC)
+	ZEND_ME(CanBus, __destruct,  arginfo_class_CanBus___destruct,  ZEND_ACC_PUBLIC)
+	ZEND_ME(CanBus, close, arginfo_class_CanBus_close, ZEND_ACC_PUBLIC)
 	ZEND_ME(CanBus, init, arginfo_class_CanBus_init, ZEND_ACC_PUBLIC)
 	ZEND_ME(CanBus, read, arginfo_class_CanBus_read, ZEND_ACC_PUBLIC)
 	ZEND_ME(CanBus, send, arginfo_class_CanBus_send, ZEND_ACC_PUBLIC)
