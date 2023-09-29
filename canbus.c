@@ -53,6 +53,57 @@ PHP_METHOD(CanBus, __construct) {
 }
 /* }}} */
 
+/*
+add __destruct()
+/*
+/* {{{ CanBus destruct */
+PHP_METHOD(CanBus, __destruct) {
+
+    // This method doesn't need any 
+    ZEND_PARSE_PARAMETERS_NONE();
+    
+    // Get socket file descriptor
+    zend_long sockFd = Z_LVAL_P(CANBUS_SOCKFD_P);
+
+	if(sockFd > 0)
+	{
+		shutdown (sockFd, 2);
+		close(sockFd);
+		sockFd = -1;
+		ZVAL_LONG(CANBUS_SOCKFD_P, sockFd);
+	}
+
+    RETURN_TRUE;
+}
+/* }}} */
+
+/*
+add close()
+/*
+/* {{{ CanBus close */
+PHP_METHOD(CanBus, close) {
+
+    // This method doesn't need any 
+    ZEND_PARSE_PARAMETERS_NONE();
+    
+    // Get socket file descriptor
+    zend_long sockFd = Z_LVAL_P(CANBUS_SOCKFD_P);
+
+	if(sockFd > 0)
+	{
+		shutdown (sockFd, 2);
+		close(sockFd);
+		sockFd = -1;
+		ZVAL_LONG(CANBUS_SOCKFD_P, sockFd);
+	}else{
+		php_error_docref(NULL, E_WARNING, "canbus not connected");
+		RETURN_FALSE;
+	}
+
+    RETURN_TRUE;
+}
+/* }}} */
+
 /* {{{ CanBus init method */
 PHP_METHOD(CanBus, init) {
     zend_bool blocking = true;
