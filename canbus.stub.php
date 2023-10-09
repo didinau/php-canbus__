@@ -11,7 +11,7 @@ class CanBus {
     public function read(): CanFrame|false {}
     public function send(CanFrame $frame): bool {}
     public function generateRandomFrame(): CanFrame {}
-    public function __destruct(): bool {}
+    public function __destruct(): void {}
     public function close(): bool {}
 }
 
